@@ -148,16 +148,18 @@ Hints.dispatchAction = function(link, shift) {
     }
     break;
   case 'hover':
-    if (Hints.lastHover) {
-      DOM.mouseEvent('unhover', Hints.lastHover);
-      if (Hints.lastHover === link) {
-        Hints.lastHover = null;
-        break;
+      if (Hints.lastHover) {
+        link.blur();
+        DOM.mouseEvent('unhover', Hints.lastHover);
+        if (Hints.lastHover === link) {
+          Hints.lastHover = null;
+          break;
+        }
       }
-    }
-    DOM.mouseEvent('hover', link);
-    Hints.lastHover = link;
-    break;
+      link.focus();
+      DOM.mouseEvent('hover', link);
+      Hints.lastHover = link;
+      break;
   case 'edit':
     Mappings.insertFunctions.__setElement__(link);
     link.focus();
@@ -166,8 +168,10 @@ Hints.dispatchAction = function(link, shift) {
     });
     break;
   case 'unhover':
-    DOM.mouseEvent('unhover', link);
-    break;
+      DOM.mouseEvent('unhover', link);
+      Hints.lastHover = null;
+      link.blur();
+      break;
   case 'window':
     RUNTIME('openLinkWindow', {
       focused: true,

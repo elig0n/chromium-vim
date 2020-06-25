@@ -184,6 +184,11 @@ Mappings.actions = {
       Visual.focusSearchResult(true);
     }
   },
+  sourceWithVim: function() {
+    PORT('sourceWithVim', {
+      text: document.documentElement.innerHTML
+    });
+  },
   openLastHint: function() {
     Hints.dispatchAction(Hints.lastClicked);
   },

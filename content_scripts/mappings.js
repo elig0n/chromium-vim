@@ -186,7 +186,7 @@ Mappings.actions = {
   },
   sourceWithVim: function() {
     PORT('sourceWithVim', {
-      text: document.documentElement.innerHTML
+      text: document.documentElement.outerHTML
     });
   },
   openLastHint: function() {

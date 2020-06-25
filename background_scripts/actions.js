@@ -739,6 +739,14 @@ Actions = (function() {
       data: '' + (o.request.text || '')
     }));
   };
+  
+  _.sourceWithVim = function(o) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:' + settings.vimport);
+    xhr.send(JSON.stringify({
+      data: '' + (o.request.text || '')
+    }));
+  };
 
   _.httpRequest = function(o) {
     httpRequest(o.request.request).then(function(res) {
